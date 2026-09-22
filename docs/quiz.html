@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="mr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quiz — Learn Networking School</title>
-<meta name="description" content="Self-test quiz for Learn Networking School — 15 questions with explanations.">
-<meta property="og:title" content="Quiz — Learn Networking School">
-<meta property="og:description" content="Self-test quiz for Learn Networking School — 15 questions with explanations.">
-<meta property="og:image" content="https://baluraut.github.io/learn-networking-school/images/big-picture-4k.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Quiz — Learn Networking School">प्रश्नमंजुषा — Learn Networking School</title>
+<meta content="Self-test quiz for Learn Networking School — 15 questions with explanations." name="description"/>
+<meta content="Quiz — Learn Networking School" property="og:title"/>
+<meta content="Self-test quiz for Learn Networking School — 15 questions with explanations." property="og:description"/>
+<meta content="https://baluraut.github.io/learn-networking-school/images/big-picture-4k.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <style>
   :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0369a1; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
   @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
@@ -51,18 +52,30 @@
 .reset { margin-top:20px; background:var(--accent); color:#fff; border:none; border-radius:10px; padding:10px 18px; font:inherit; font-weight:700; cursor:pointer; }
 .parts{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px} .pbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer} .pbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 </style>
-</head>
-<body>
 
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+.i18n-en{display:block;font-size:.86em;line-height:1.35;color:var(--muted,#64748b);font-weight:400;margin-top:2px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.i18n-en.i{display:inline;margin:0 0 0 .3em;font-size:.92em;opacity:.85}
+.i18n-en.i::before{content:"· "}
+h1 .i18n-en,h2 .i18n-en{font-size:.58em;margin-top:4px} h3 .i18n-en{font-size:.78em}
+.lab .i18n-en,.wk .i18n-en{color:inherit;opacity:.85}
+html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
+<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="both">🇮🇳🇬🇧 मराठी + English</option><option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
 <div class="wrap">
-<p><a href="index.html">← Back to the course home</a></p>
-<h1>🧪 The 🕸️ Networking quiz</h1>
-<p class="sub">15 questions — pick an answer, get the why. Filter by Part below. One attempt per question (until reset). Your best score is saved in this browser.</p>
-<div class="scorebox"><div class="score" id="score">0 / 15 · best: —</div></div>
-<div class="parts" id="parts"><button class="pbtn on" onclick="setPart(0)">All 15</button><button class="pbtn" onclick="setPart(1)">📮 Part 1 the post</button><button class="pbtn" onclick="setPart(2)">🏗️ Part 2 the building</button></div>
+<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
+<h1 data-en="🧪 The 🕸️ Networking quiz">🧪 🕸️ Networking प्रश्नमंजुषा</h1>
+<p class="sub" data-en="15 questions — pick an answer, get the why. Filter by Part below. One attempt per question (until reset). Your best score is saved in this browser.">15 प्रश्न — उत्तर निवडा, कारण मिळवा. खाली भागानुसार गाळा. प्रत्येक प्रश्नाला एकच प्रयत्न (reset पर्यंत). तुमचा सर्वोत्तम गुण या ब्राउझरमध्ये जपला जातो.</p>
+<div class="scorebox"><div class="score" data-en="0 / 15 · best: —" id="score">0 / 15 · सर्वोत्तम: —</div></div>
+<div class="parts" id="parts"><button class="pbtn on" data-en="All 15" onclick="setPart(0)">सर्व 15</button><button class="pbtn" data-en="📮 Part 1 the post" onclick="setPart(1)">📮 भाग 1 पोस्ट</button><button class="pbtn" data-en="🏗️ Part 2 the building" onclick="setPart(2)">🏗️ भाग 2 इमारत</button></div>
 <div id="quiz"></div>
-<button class="reset" onclick="reset()">↺ Reset &amp; retake</button>
-<footer>Part of <a href="https://baluraut.github.io/school/">🏫 The School</a> · <a href="index.html">course home</a> · <a href="https://github.com/BaluRaut/learn-networking-school/issues">🐛 found a mistake?</a></footer>
+<button class="reset" data-en="↺ Reset &amp;amp; retake" onclick="reset()">↺ Reset &amp; पुन्हा द्या</button>
+<footer data-en='Part of &lt;a href="https://baluraut.github.io/school/"&gt;🏫 The School&lt;/a&gt; · &lt;a href="index.html"&gt;course home&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-networking-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;'><a href="https://baluraut.github.io/school/">🏫 द स्कूल</a> चा भाग · <a href="index.html">कोर्स मुख्य पान</a> · <a href="https://github.com/BaluRaut/learn-networking-school/issues">🐛 चूक सापडली?</a></footer>
 </div>
 <script>
 var QS = [{"q": "What does an IP address identify?", "o": ["A program on a computer", "A computer (a building) on the network", "A web page"], "c": 1, "w": "L02: the address finds the building; the port finds the room (program).", "p": 1}, {"q": "192.168.0.0/24 — what does the /24 mean?", "o": ["24 computers", "The first 24 bits are the network (the wing); the last 8 pick the host", "A port range"], "c": 1, "w": "L02: CIDR: /24 leaves 8 bits → 256 addresses in one wing.", "p": 1}, {"q": "Two homes both have a laptop at 192.168.0.12. How do both reach the internet?", "o": ["They cannot", "NAT at each home&#39;s gate rewrites the private address to that home&#39;s one public address", "IPv6 magic"], "c": 1, "w": "L02/L10: private ranges are reused everywhere; the gate translates.", "p": 1}, {"q": "A socket is…", "o": ["A port", "One connection: (local ip:port ↔ remote ip:port)", "A cable"], "c": 1, "w": "L03: four numbers name one conversation; a server listens on a room, each visitor gets a desk.", "p": 1}, {"q": "Which layer knows about ports?", "o": ["IP (the bag)", "TCP/UDP (the envelope)", "Ethernet (the van)"], "c": 1, "w": "L04: addresses are IP&#39;s job, ports are the transport layer&#39;s.", "p": 1}, {"q": "TCP gives you…", "o": ["Speed above all", "A handshake, ordered complete bytes, retransmission", "Message boundaries"], "c": 1, "w": "L05: a reliable STREAM — boundaries (newline, length, HTTP) are yours to add.", "p": 1}, {"q": "Why does DNS use UDP?", "o": ["It is more reliable", "One tiny question, one tiny answer — no handshake worth paying for", "Because port 53 is UDP-only"], "c": 1, "w": "L06: a 29-byte question; the resolver retries if it is lost.", "p": 1}, {"q": "A DNS record has TTL 300. You change it. When does everyone see the new address?", "o": ["Instantly", "Within about 300 seconds, as caches expire", "Next day"], "c": 1, "w": "L06: caches keep the old answer for up to one TTL.", "p": 1}, {"q": "HTTP/3 runs over…", "o": ["TCP", "QUIC over UDP", "TLS 1.2"], "c": 1, "w": "L07: QUIC rebuilds reliability without head-of-line blocking.", "p": 2}, {"q": "What does a TLS certificate prove?", "o": ["The site is honest", "The server holds the key for that name, vouched for by a trusted CA", "The connection is fast"], "c": 1, "w": "L08: identity of the name, then encryption — not the content&#39;s honesty.", "p": 2}, {"q": "&#39;Connection timed out&#39; vs &#39;connection refused&#39; — which smells like a firewall?", "o": ["Refused", "Timed out — the gate dropped you silently; an empty room refuses quickly", "Both"], "c": 1, "w": "L10/L12: firewalls drop, closed ports reset.", "p": 2}, {"q": "Your laptop wants to reach 93.184.216.34. Not in its wing. It sends the packet to…", "o": ["DNS", "The default gateway (your router), which forwards by prefix", "The CDN"], "c": 1, "w": "L09: nobody knows the whole map; everyone knows the next corridor.", "p": 2}, {"q": "A load balancer that routes by URL path is…", "o": ["L4", "L7", "DNS round-robin"], "c": 1, "w": "L11: L7 sees the request; L4 sees only address and port.", "p": 2}, {"q": "A CDN is…", "o": ["A faster server", "A copy of the notice board in every city, cached by URL", "A firewall"], "c": 1, "w": "L11: the reception desk near the reader.", "p": 2}, {"q": "First rung of the debugging ladder?", "o": ["Restart the server", "Is it DNS? — dig +short the name", "Check the firewall"], "c": 1, "w": "L12: DNS → reach → route → port → TLS → HTTP → logs.", "p": 2}];
@@ -99,5 +112,42 @@ function update() {
 function reset() { answered={}; score=0; render(); update(); }
 render(); update();
 </script>
-</body>
+
+<script id="i18n-js">
+var I18N_INLINE={A:1,SPAN:1,CODE:1,B:1,I:1,EM:1,STRONG:1,BUTTON:1,LABEL:1,SUMMARY:1,SMALL:1,KBD:1};
+function schoolSetLang(l){
+  if(l!=='en'&&l!=='mr'&&l!=='both') l='both';
+  try{localStorage.setItem('school-lang2',l)}catch(e){}
+  document.documentElement.setAttribute('lang', l==='en' ? 'en' : 'mr');
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    var en=el.getAttribute('data-en'), mr=el.getAttribute('data-mr');
+    var svg = el.namespaceURI && el.namespaceURI.indexOf('svg')>-1;
+    if(svg){
+      el.innerHTML = (l==='en') ? en : mr;
+      var t=el.querySelector('title'); if(t) t.remove();
+      if(l==='both'){ t=document.createElementNS('http://www.w3.org/2000/svg','title'); t.textContent=en.replace(/<[^>]+>/g,''); el.insertBefore(t, el.firstChild); }
+      return;
+    }
+    if(l==='en') el.innerHTML = en;
+    else if(l==='mr') el.innerHTML = mr;
+    else if(en.replace(/\s+/g,' ').trim()===mr.replace(/\s+/g,' ').trim()) el.innerHTML = mr;
+    else {
+      var e2=en.replace(/<span class="(ln|num|wk)">[\s\S]*?<\/span>\s*/g,'');
+      if(e2.charAt(0)!=='<' && mr.charAt(0)!=='<'){           /* drop the prefix both languages share, e.g. "01 · 🏢 " */
+        var i=0; while(i<e2.length&&i<mr.length&&e2.charAt(i)===mr.charAt(i)) i++;
+        var cut=e2.lastIndexOf(' ',i); if(cut>0 && cut<e2.length-1) e2=e2.slice(cut+1);
+      }
+      el.innerHTML = mr + '<span class="i18n-en'+(I18N_INLINE[el.tagName]?' i':'')+'">'+e2+'</span>';
+    }
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : (l==='mr' ? el.getAttribute('data-mr-ph') : el.getAttribute('data-mr-ph')+' / '+el.getAttribute('data-en-ph')));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='both'; try{ l=localStorage.getItem('school-lang2')||'both'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
 </html>

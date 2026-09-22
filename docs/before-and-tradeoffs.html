@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="mr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Before & trade-offs — Learn Networking School</title>
-<meta name="description" content="For every big networking idea: what came before, merits and demerits, and where to use it vs where not.">
-<meta property="og:title" content="Before & trade-offs — Learn Networking School">
-<meta property="og:description" content="For every big networking idea: what came before, merits and demerits, and where to use it vs where not.">
-<meta property="og:image" content="https://baluraut.github.io/learn-networking-school/images/big-picture-4k.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Before &amp;amp; trade-offs — Learn Networking School">आधी &amp; फायदे-तोटे — Learn Networking School</title>
+<meta content="For every big networking idea: what came before, merits and demerits, and where to use it vs where not." name="description"/>
+<meta content="Before &amp; trade-offs — Learn Networking School" property="og:title"/>
+<meta content="For every big networking idea: what came before, merits and demerits, and where to use it vs where not." property="og:description"/>
+<meta content="https://baluraut.github.io/learn-networking-school/images/big-picture-4k.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <style>
   :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0369a1; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
   @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
@@ -52,90 +53,138 @@
   .toc a { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:5px 12px; font-size:.82rem; color:var(--muted); text-decoration:none; }
   .toc a:hover { color:var(--ink); border-color:var(--muted); }
 </style>
-</head>
-<body>
 
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+.i18n-en{display:block;font-size:.86em;line-height:1.35;color:var(--muted,#64748b);font-weight:400;margin-top:2px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.i18n-en.i{display:inline;margin:0 0 0 .3em;font-size:.92em;opacity:.85}
+.i18n-en.i::before{content:"· "}
+h1 .i18n-en,h2 .i18n-en{font-size:.58em;margin-top:4px} h3 .i18n-en{font-size:.78em}
+.lab .i18n-en,.wk .i18n-en{color:inherit;opacity:.85}
+html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
+<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="both">🇮🇳🇬🇧 मराठी + English</option><option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
 <div class="wrap">
 <header>
-  <p><a href="index.html">← Back to the course home</a></p>
-  <h1>⏮️ Before &amp; trade-offs</h1>
-  <p class="sub">Every tool replaced something worse — and is itself the wrong tool somewhere. For each big idea: what life was like <b>before</b>, honest <b>merits ✅ / demerits ❌</b>, and <b>where to use it 👍 vs not 👎</b>.</p>
-  <nav class="toc"><a href="#tcpudp">📬 TCP vs UDP</a><a href="#ipv6">🏫 IPv4 vs IPv6</a><a href="#dns">📖 Public vs private DNS</a><a href="#tls">🔒 TLS 1.3 vs 1.2</a><a href="#nat">🚪 NAT vs public addresses</a><a href="#lb">🏪 L4 vs L7 load balancing</a><a href="#vpn">🕳️ VPN vs zero trust</a></nav>
+<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
+<h1 data-en="⏮️ Before &amp;amp; trade-offs">⏮️ आधी काय होते &amp; फायदे-तोटे</h1>
+<p class="sub" data-en="Every tool replaced something worse — and is itself the wrong tool somewhere. For each big idea: what life was like &lt;b&gt;before&lt;/b&gt;, honest &lt;b&gt;merits ✅ / demerits ❌&lt;/b&gt;, and &lt;b&gt;where to use it 👍 vs not 👎&lt;/b&gt;.">प्रत्येक साधनाने काहीतरी वाईट गोष्ट बदलली — आणि तेच साधन कुठेतरी चुकीचे ठरते. प्रत्येक मोठ्या कल्पनेसाठी: <b>आधी</b> जीवन कसे होते, प्रामाणिक <b>फायदे ✅ / तोटे ❌</b>, आणि <b>कुठे वापरावी 👍 विरुद्ध कुठे नाही 👎</b>.</p>
+<nav class="toc" data-en='&lt;a href="#tcpudp"&gt;📬 TCP vs UDP&lt;/a&gt;&lt;a href="#ipv6"&gt;🏫 IPv4 vs IPv6&lt;/a&gt;&lt;a href="#dns"&gt;📖 Public vs private DNS&lt;/a&gt;&lt;a href="#tls"&gt;🔒 TLS 1.3 vs 1.2&lt;/a&gt;&lt;a href="#nat"&gt;🚪 NAT vs public addresses&lt;/a&gt;&lt;a href="#lb"&gt;🏪 L4 vs L7 load balancing&lt;/a&gt;&lt;a href="#vpn"&gt;🕳️ VPN vs zero trust&lt;/a&gt;'><a href="#tcpudp">📬 TCP विरुद्ध UDP</a><a href="#ipv6">🏫 IPv4 विरुद्ध IPv6</a><a href="#dns">📖 सार्वजनिक विरुद्ध खाजगी DNS</a><a href="#tls">🔒 TLS 1.3 विरुद्ध 1.2</a><a href="#nat">🚪 NAT विरुद्ध सार्वजनिक पत्ते</a><a href="#lb">🏪 L4 विरुद्ध L7 load balancing</a><a href="#vpn">🕳️ VPN विरुद्ध zero trust</a></nav>
 </header>
-
 <section class="term" id="tcpudp" style="--c:#0369a1">
-  <h2>📬 TCP vs UDP — lesson 05</h2>
-  <div class="hist"><b>⏮️ Before both (1970s ARPANET)</b><p>One protocol tried to do everything; the split into IP (delivery) and TCP/UDP (contracts) is what let the internet grow.</p></div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul><li>TCP: complete, ordered, retransmitted — you never think about loss</li><li>UDP: no handshake, no buffers, tiny headers — the fastest thing possible</li></ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>TCP: a round trip to start, head-of-line blocking, buffers</li><li>UDP: you handle loss, order and congestion yourself</li></ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul><li>TCP for anything that must be complete: web, mail, databases</li><li>UDP for DNS, video, voice, games — and QUIC/HTTP/3</li></ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>UDP for a file transfer you wrote yourself</li><li>TCP for 20 ms voice packets</li></ul></div>
-  </div>
+<h2 data-en="📬 TCP vs UDP — lesson 05">📬 TCP विरुद्ध UDP — धडा 05</h2>
+<div class="hist"><b data-en="⏮️ Before both (1970s ARPANET)">⏮️ दोन्हींच्या आधी (1970 चे ARPANET)</b><p data-en="One protocol tried to do everything; the split into IP (delivery) and TCP/UDP (contracts) is what let the internet grow.">एकाच protocol ने सगळे करायचा प्रयत्न केला; IP (पोहोच) आणि TCP/UDP (करार) यांची फूट यामुळेच internet वाढू शकले.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="TCP: complete, ordered, retransmitted — you never think about loss">TCP: पूर्ण, क्रमाने, पुन्हा पाठवलेले — हरवण्याचा विचारच नाही</li><li data-en="UDP: no handshake, no buffers, tiny headers — the fastest thing possible">UDP: handshake नाही, buffers नाहीत, छोटे headers — शक्य तितके वेगवान</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="TCP: a round trip to start, head-of-line blocking, buffers">TCP: सुरू करायला एक फेरी, head-of-line blocking, buffers</li><li data-en="UDP: you handle loss, order and congestion yourself">UDP: हरवणे, क्रम आणि गर्दी तुम्हीच सांभाळता</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="TCP for anything that must be complete: web, mail, databases">पूर्ण असायलाच हवे त्या सगळ्यासाठी TCP: web, mail, databases</li><li data-en="UDP for DNS, video, voice, games — and QUIC/HTTP/3">DNS, video, आवाज, खेळ — आणि QUIC/HTTP/3 साठी UDP</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="UDP for a file transfer you wrote yourself">तुम्ही स्वतः लिहिलेल्या file transfer साठी UDP</li><li data-en="TCP for 20 ms voice packets">20 ms च्या आवाज packets साठी TCP</li></ul></div>
+</div>
 </section>
 <section class="term" id="ipv6" style="--c:#0369a1">
-  <h2>🏫 IPv4 vs IPv6 — lesson 02</h2>
-  <div class="hist"><b>⏮️ Before IPv6 (1998)</b><p>Four billion addresses looked infinite in 1981; NAT was invented to stretch them, and every home got the same 192.168.0.x.</p></div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul><li>IPv6: 340 undecillion addresses, no NAT needed, every device reachable</li><li>IPv4: everything supports it, every engineer knows it</li></ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>IPv6: two stacks to run, longer addresses to read, some networks still lack it</li><li>IPv4: scarce, expensive, NAT everywhere</li></ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul><li>dual-stack by default; IPv6 first on mobile and in new clouds</li><li>IPv4 for anything that must work everywhere today</li></ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>IPv6-only for a public service in 2026</li><li>IPv4-only for a new mobile app backend</li></ul></div>
-  </div>
+<h2 data-en="🏫 IPv4 vs IPv6 — lesson 02">🏫 IPv4 विरुद्ध IPv6 — धडा 02</h2>
+<div class="hist"><b data-en="⏮️ Before IPv6 (1998)">⏮️ IPv6 आधी (1998)</b><p data-en="Four billion addresses looked infinite in 1981; NAT was invented to stretch them, and every home got the same 192.168.0.x.">1981 मध्ये चार अब्ज पत्ते अनंत वाटले; ते ताणायला NAT शोधले गेले, आणि प्रत्येक घराला तेच 192.168.0.x मिळाले.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="IPv6: 340 undecillion addresses, no NAT needed, every device reachable">IPv6: 340 undecillion पत्ते, NAT ची गरज नाही, प्रत्येक device गाठता येते</li><li data-en="IPv4: everything supports it, every engineer knows it">IPv4: सगळे त्याला साथ देतात, प्रत्येक अभियंत्याला माहीत</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="IPv6: two stacks to run, longer addresses to read, some networks still lack it">IPv6: दोन stacks चालवायचे, लांब पत्ते वाचायचे, काही networks मध्ये अजून नाही</li><li data-en="IPv4: scarce, expensive, NAT everywhere">IPv4: दुर्मिळ, महाग, सगळीकडे NAT</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="dual-stack by default; IPv6 first on mobile and in new clouds">default dual-stack; mobile आणि नव्या clouds मध्ये आधी IPv6</li><li data-en="IPv4 for anything that must work everywhere today">आज सगळीकडे चालायलाच हवे त्यासाठी IPv4</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="IPv6-only for a public service in 2026">2026 मध्ये सार्वजनिक service साठी फक्त IPv6</li><li data-en="IPv4-only for a new mobile app backend">नव्या mobile ॲप backend साठी फक्त IPv4</li></ul></div>
+</div>
 </section>
 <section class="term" id="dns" style="--c:#0369a1">
-  <h2>📖 Public vs private DNS — lesson 06</h2>
-  <div class="hist"><b>⏮️ Before DNS (hosts.txt, 1983)</b><p>Every computer downloaded one text file of every name on the network. It stopped scaling at a few hundred hosts.</p></div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul><li>public DNS (Route 53, Cloudflare): reachable by everyone, anycast, fast</li><li>private zones: internal names (db.internal) that never leak</li></ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>public: a typo is global in one TTL</li><li>private: split-horizon confusion — the same name meaning two things</li></ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul><li>public for anything users type</li><li>private for service discovery inside a VPC or cluster</li></ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>internal database names in public DNS</li><li>a public site only in a private zone</li></ul></div>
-  </div>
+<h2 data-en="📖 Public vs private DNS — lesson 06">📖 सार्वजनिक विरुद्ध खाजगी DNS — धडा 06</h2>
+<div class="hist"><b data-en="⏮️ Before DNS (hosts.txt, 1983)">⏮️ DNS आधी (hosts.txt, 1983)</b><p data-en="Every computer downloaded one text file of every name on the network. It stopped scaling at a few hundred hosts.">प्रत्येक संगणक network वरच्या प्रत्येक नावाची एक मजकूर-फाइल download करायचा. काही शे hosts वर ते थांबले.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="public DNS (Route 53, Cloudflare): reachable by everyone, anycast, fast">सार्वजनिक DNS (Route 53, Cloudflare): सगळ्यांना गाठता येणारे, anycast, वेगवान</li><li data-en="private zones: internal names (db.internal) that never leak">खाजगी zones: कधीच न गळणारी अंतर्गत नावे (db.internal)</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="public: a typo is global in one TTL">सार्वजनिक: एक चूक एका TTL मध्ये जागतिक</li><li data-en="private: split-horizon confusion — the same name meaning two things">खाजगी: split-horizon गोंधळ — एकाच नावाचे दोन अर्थ</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="public for anything users type">वापरकर्ते टाइप करतात त्या सगळ्यासाठी सार्वजनिक</li><li data-en="private for service discovery inside a VPC or cluster">VPC किंवा cluster आतल्या service discovery साठी खाजगी</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="internal database names in public DNS">सार्वजनिक DNS मध्ये अंतर्गत database ची नावे</li><li data-en="a public site only in a private zone">सार्वजनिक साइट फक्त खाजगी zone मध्ये</li></ul></div>
+</div>
 </section>
 <section class="term" id="tls" style="--c:#4338ca">
-  <h2>🔒 TLS 1.3 vs 1.2 — lesson 08</h2>
-  <div class="hist"><b>⏮️ Before TLS (SSL, 1995)</b><p>HTTP sent passwords in the clear; SSL bolted encryption on, then accumulated twenty years of broken ciphers.</p></div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul><li>1.3: one round trip, only strong ciphers, forward secrecy by default</li><li>1.2: supported by ancient clients and appliances</li></ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>1.3: some middleboxes still choke on it</li><li>1.2: allows weak configurations if you let it</li></ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul><li>1.3 everywhere; keep 1.2 only for known old clients</li><li>never anything older</li></ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>TLS 1.0/1.1 or SSL for anything</li><li>disabling TLS &#39;for speed&#39; inside a network</li></ul></div>
-  </div>
+<h2 data-en="🔒 TLS 1.3 vs 1.2 — lesson 08">🔒 TLS 1.3 विरुद्ध 1.2 — धडा 08</h2>
+<div class="hist"><b data-en="⏮️ Before TLS (SSL, 1995)">⏮️ TLS आधी (SSL, 1995)</b><p data-en="HTTP sent passwords in the clear; SSL bolted encryption on, then accumulated twenty years of broken ciphers.">HTTP passwords उघड पाठवायचे; SSL ने encryption जोडले, मग वीस वर्षे मोडक्या ciphers साठवल्या.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="1.3: one round trip, only strong ciphers, forward secrecy by default">1.3: एक फेरी, फक्त बळकट ciphers, default forward secrecy</li><li data-en="1.2: supported by ancient clients and appliances">1.2: जुनाट clients आणि उपकरणे साथ देतात</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="1.3: some middleboxes still choke on it">1.3: काही middleboxes अजून अडखळतात</li><li data-en="1.2: allows weak configurations if you let it">1.2: दिले तर कमकुवत configuration चालवते</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="1.3 everywhere; keep 1.2 only for known old clients">सगळीकडे 1.3; 1.2 फक्त माहीत असलेल्या जुन्या clients साठी</li><li data-en="never anything older">त्याहून जुने कधीच नाही</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="TLS 1.0/1.1 or SSL for anything">कशासाठीही TLS 1.0/1.1 किंवा SSL</li><li data-en="disabling TLS 'for speed' inside a network">network च्या आत 'वेगासाठी' TLS बंद करणे</li></ul></div>
+</div>
 </section>
 <section class="term" id="nat" style="--c:#4338ca">
-  <h2>🚪 NAT vs public addresses — lessons 02, 10</h2>
-  <div class="hist"><b>⏮️ Before NAT (~1994)</b><p>Every machine had a public address and was reachable from the whole internet — fine for 1,000 universities, fatal for a billion phones.</p></div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul><li>NAT: one public address serves a building; nothing inside is reachable unless you say so</li><li>public addresses: simple, no port mapping, peer-to-peer just works</li></ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>NAT: inbound needs port forwarding; carrier-grade NAT breaks some apps</li><li>public: every device is a target; addresses are scarce</li></ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul><li>NAT for homes, offices, private subnets in the cloud</li><li>public addresses for servers that must be reached</li></ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>a database with a public address</li><li>expecting inbound connections to a phone behind carrier NAT</li></ul></div>
-  </div>
+<h2 data-en="🚪 NAT vs public addresses — lessons 02, 10">🚪 NAT विरुद्ध सार्वजनिक पत्ते — धडे 02, 10</h2>
+<div class="hist"><b data-en="⏮️ Before NAT (~1994)">⏮️ NAT आधी (~1994)</b><p data-en="Every machine had a public address and was reachable from the whole internet — fine for 1,000 universities, fatal for a billion phones.">प्रत्येक मशीनला सार्वजनिक पत्ता होता आणि अख्ख्या internet वरून गाठता यायचे — 1,000 विद्यापीठांसाठी ठीक, अब्जावधी फोनसाठी घातक.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="NAT: one public address serves a building; nothing inside is reachable unless you say so">NAT: एक सार्वजनिक पत्ता अख्खी इमारत सांभाळतो; तुम्ही म्हणाल तरच आतले काही गाठता येते</li><li data-en="public addresses: simple, no port mapping, peer-to-peer just works">सार्वजनिक पत्ते: साधे, port mapping नाही, peer-to-peer सहज चालते</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="NAT: inbound needs port forwarding; carrier-grade NAT breaks some apps">NAT: आत येणाऱ्याला port forwarding लागते; carrier-grade NAT काही ॲप्स मोडते</li><li data-en="public: every device is a target; addresses are scarce">सार्वजनिक: प्रत्येक device लक्ष्य; पत्ते दुर्मिळ</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="NAT for homes, offices, private subnets in the cloud">घरे, ऑफिसे, cloud मधल्या खाजगी subnets साठी NAT</li><li data-en="public addresses for servers that must be reached">गाठता यायलाच हवेत त्या servers साठी सार्वजनिक पत्ते</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="a database with a public address">सार्वजनिक पत्ता असलेला database</li><li data-en="expecting inbound connections to a phone behind carrier NAT">carrier NAT मागच्या फोनला आत येणाऱ्या जोडण्यांची अपेक्षा</li></ul></div>
+</div>
 </section>
 <section class="term" id="lb" style="--c:#4338ca">
-  <h2>🏪 L4 vs L7 load balancing — lesson 11</h2>
-  <div class="hist"><b>⏮️ Before load balancers (DNS round-robin)</b><p>One name pointed at three addresses and hoped; a dead server still got a third of the visitors until its TTL expired.</p></div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul><li>L4: fast, protocol-agnostic, keeps TLS end-to-end</li><li>L7: routes by URL and header, terminates TLS, retries, can rewrite</li></ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>L4: cannot see the request, so cannot route by path</li><li>L7: more CPU, it must understand HTTP</li></ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul><li>L4 for databases, gRPC passthrough, raw TCP</li><li>L7 for web apps, APIs, canary routing</li></ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>L7 for a Postgres connection</li><li>L4 when you need per-path routing</li></ul></div>
-  </div>
+<h2 data-en="🏪 L4 vs L7 load balancing — lesson 11">🏪 L4 विरुद्ध L7 load balancing — धडा 11</h2>
+<div class="hist"><b data-en="⏮️ Before load balancers (DNS round-robin)">⏮️ Load balancers आधी (DNS round-robin)</b><p data-en="One name pointed at three addresses and hoped; a dead server still got a third of the visitors until its TTL expired.">एक नाव तीन पत्त्यांकडे दाखवायचे आणि आशा करायचे; मेलेल्या server ला TTL संपेपर्यंत तिसरा हिस्सा पाहुणे मिळायचे.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="L4: fast, protocol-agnostic, keeps TLS end-to-end">L4: वेगवान, protocol-निरपेक्ष, TLS टोकापासून टोकापर्यंत ठेवते</li><li data-en="L7: routes by URL and header, terminates TLS, retries, can rewrite">L7: URL आणि header नुसार route, TLS संपवते, पुन्हा-प्रयत्न, पुन्हा लिहू शकते</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="L4: cannot see the request, so cannot route by path">L4: विनंती दिसत नाही, म्हणून path नुसार route नाही</li><li data-en="L7: more CPU, it must understand HTTP">L7: जास्त CPU, HTTP समजावेच लागते</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="L4 for databases, gRPC passthrough, raw TCP">databases, gRPC passthrough, कच्च्या TCP साठी L4</li><li data-en="L7 for web apps, APIs, canary routing">web ॲप्स, API, canary routing साठी L7</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="L7 for a Postgres connection">Postgres जोडणीसाठी L7</li><li data-en="L4 when you need per-path routing">path नुसार routing हवे असताना L4</li></ul></div>
+</div>
 </section>
 <section class="term" id="vpn" style="--c:#4338ca">
-  <h2>🕳️ VPN vs zero trust — lesson 10</h2>
-  <div class="hist"><b>⏮️ Before VPNs</b><p>Working from outside the building meant a modem into the office; the network&#39;s edge WAS the security.</p></div>
-  <div class="quad">
-    <div class="q merit"><h4>✅ Merits</h4><ul><li>VPN: one tunnel, you are inside; simple mental model</li><li>zero trust: every request authenticated; no &#39;inside&#39;</li></ul></div>
-    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>VPN: inside = trusted, so one stolen laptop sees everything</li><li>zero trust: every service needs identity-aware access (mTLS, SSO)</li></ul></div>
-    <div class="q use"><h4>👍 Use when</h4><ul><li>VPN for small teams and legacy systems</li><li>zero trust for anything public-facing or large</li></ul></div>
-    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>a flat VPN as the only control for a hundred services</li><li>zero trust theatre: a login page in front of an open database</li></ul></div>
-  </div>
-</section>
-<footer>
-  Learn Networking School · the post room is in the repo · <a href="index.html">Course home</a> · <a href="lesson-diagrams.html">Lesson diagrams</a> · <a href="https://github.com/BaluRaut/learn-networking-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 the Dictionary</a> · <a href="https://baluraut.github.io/school/">🏫 all schools</a> · <a href="https://github.com/BaluRaut/learn-networking-school/issues">🐛 found a mistake?</a>
-</footer>
+<h2 data-en="🕳️ VPN vs zero trust — lesson 10">🕳️ VPN विरुद्ध zero trust — धडा 10</h2>
+<div class="hist"><b data-en="⏮️ Before VPNs">⏮️ VPN आधी</b><p data-en="Working from outside the building meant a modem into the office; the network's edge WAS the security.">इमारतीबाहेरून काम म्हणजे ऑफिसमध्ये modem; network ची सीमा हीच सुरक्षा होती.</p></div>
+<div class="quad">
+<div class="q merit"><h4 data-en="✅ Merits">✅ फायदे</h4><ul><li data-en="VPN: one tunnel, you are inside; simple mental model">VPN: एक बोगदा, तुम्ही आत; साधे मानसिक चित्र</li><li data-en="zero trust: every request authenticated; no 'inside'">zero trust: प्रत्येक विनंती authenticated; 'आत' असे काही नाही</li></ul></div>
+<div class="q demerit"><h4 data-en="❌ Demerits">❌ तोटे</h4><ul><li data-en="VPN: inside = trusted, so one stolen laptop sees everything">VPN: आत = विश्वासार्ह, म्हणून एक चोरलेला लॅपटॉप सगळे पाहतो</li><li data-en="zero trust: every service needs identity-aware access (mTLS, SSO)">zero trust: प्रत्येक service ला ओळख-जाणणारा प्रवेश लागतो (mTLS, SSO)</li></ul></div>
+<div class="q use"><h4 data-en="👍 Use when">👍 वापरा जेव्हा</h4><ul><li data-en="VPN for small teams and legacy systems">छोट्या टीम्स आणि जुन्या प्रणालींसाठी VPN</li><li data-en="zero trust for anything public-facing or large">सार्वजनिक किंवा मोठ्या कशासाठीही zero trust</li></ul></div>
+<div class="q avoid"><h4 data-en="👎 Think twice when">👎 दोनदा विचार करा जेव्हा</h4><ul><li data-en="a flat VPN as the only control for a hundred services">शंभर services साठी एकमेव नियंत्रण म्हणून सपाट VPN</li><li data-en="zero trust theatre: a login page in front of an open database">zero trust चे नाटक: उघड्या database समोर login पान</li></ul></div>
 </div>
-</body>
+</section>
+<footer data-en='
+  Learn Networking School · the post room is in the repo · &lt;a href="index.html"&gt;Course home&lt;/a&gt; · &lt;a href="lesson-diagrams.html"&gt;Lesson diagrams&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-networking-school"&gt;GitHub&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/dictionary.html"&gt;📖 the Dictionary&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/"&gt;🏫 all schools&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-networking-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;
+'>Learn Networking School · पोस्ट रूम रेपोच्या आत आहे · <a href="index.html">कोर्स मुख्य पान</a> · <a href="lesson-diagrams.html">धड्यांच्या आकृत्या</a> · <a href="https://github.com/BaluRaut/learn-networking-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 शब्दकोश</a> · <a href="https://baluraut.github.io/school/">🏫 सर्व शाळा</a> · <a href="https://github.com/BaluRaut/learn-networking-school/issues">🐛 चूक सापडली?</a></footer>
+</div>
+
+<script id="i18n-js">
+var I18N_INLINE={A:1,SPAN:1,CODE:1,B:1,I:1,EM:1,STRONG:1,BUTTON:1,LABEL:1,SUMMARY:1,SMALL:1,KBD:1};
+function schoolSetLang(l){
+  if(l!=='en'&&l!=='mr'&&l!=='both') l='both';
+  try{localStorage.setItem('school-lang2',l)}catch(e){}
+  document.documentElement.setAttribute('lang', l==='en' ? 'en' : 'mr');
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    var en=el.getAttribute('data-en'), mr=el.getAttribute('data-mr');
+    var svg = el.namespaceURI && el.namespaceURI.indexOf('svg')>-1;
+    if(svg){
+      el.innerHTML = (l==='en') ? en : mr;
+      var t=el.querySelector('title'); if(t) t.remove();
+      if(l==='both'){ t=document.createElementNS('http://www.w3.org/2000/svg','title'); t.textContent=en.replace(/<[^>]+>/g,''); el.insertBefore(t, el.firstChild); }
+      return;
+    }
+    if(l==='en') el.innerHTML = en;
+    else if(l==='mr') el.innerHTML = mr;
+    else if(en.replace(/\s+/g,' ').trim()===mr.replace(/\s+/g,' ').trim()) el.innerHTML = mr;
+    else {
+      var e2=en.replace(/<span class="(ln|num|wk)">[\s\S]*?<\/span>\s*/g,'');
+      if(e2.charAt(0)!=='<' && mr.charAt(0)!=='<'){           /* drop the prefix both languages share, e.g. "01 · 🏢 " */
+        var i=0; while(i<e2.length&&i<mr.length&&e2.charAt(i)===mr.charAt(i)) i++;
+        var cut=e2.lastIndexOf(' ',i); if(cut>0 && cut<e2.length-1) e2=e2.slice(cut+1);
+      }
+      el.innerHTML = mr + '<span class="i18n-en'+(I18N_INLINE[el.tagName]?' i':'')+'">'+e2+'</span>';
+    }
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : (l==='mr' ? el.getAttribute('data-mr-ph') : el.getAttribute('data-mr-ph')+' / '+el.getAttribute('data-en-ph')));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='both'; try{ l=localStorage.getItem('school-lang2')||'both'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
 </html>

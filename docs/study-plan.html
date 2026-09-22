@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="mr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Study plan — Learn Networking School</title>
-<meta name="description" content="A 4-week study plan for the 12-lesson networking course: sequence, time estimates, weekly milestones — progress saved in your browser.">
-<meta property="og:title" content="Study plan — Learn Networking School">
-<meta property="og:description" content="A 4-week study plan for the 12-lesson networking course: sequence, time estimates, weekly milestones — progress saved in your browser.">
-<meta property="og:image" content="https://baluraut.github.io/learn-networking-school/images/big-picture-4k.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title data-en="Study plan — Learn Networking School">अभ्यास योजना — Learn Networking School</title>
+<meta content="A 4-week study plan for the 12-lesson networking course: sequence, time estimates, weekly milestones — progress saved in your browser." name="description"/>
+<meta content="Study plan — Learn Networking School" property="og:title"/>
+<meta content="A 4-week study plan for the 12-lesson networking course: sequence, time estimates, weekly milestones — progress saved in your browser." property="og:description"/>
+<meta content="https://baluraut.github.io/learn-networking-school/images/big-picture-4k.png" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
 <style>
   :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0369a1; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
   @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
@@ -58,56 +59,68 @@
   .milestone b { color:var(--ok); }
   #done { display:none; text-align:center; background:var(--card); border:2px solid var(--ok); border-radius:20px; padding:32px 24px; margin-top:26px; }
 </style>
-</head>
-<body>
 
+<style id="i18n-css">
+#lang-pick{position:fixed;top:10px;right:10px;z-index:9999;font:600 .85rem -apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--card,#fff);color:var(--ink,#0f172a);border:1px solid var(--line,#e2e8f0);border-radius:999px;padding:6px 12px;box-shadow:0 2px 10px rgba(0,0,0,.08);cursor:pointer}
+html[lang="mr"] body{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+html[lang="mr"] svg text{font-family:"Noto Sans Devanagari","Mukta","Devanagari Sangam MN","Nirmala UI",sans-serif}
+.i18n-en{display:block;font-size:.86em;line-height:1.35;color:var(--muted,#64748b);font-weight:400;margin-top:2px;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.i18n-en.i{display:inline;margin:0 0 0 .3em;font-size:.92em;opacity:.85}
+.i18n-en.i::before{content:"· "}
+h1 .i18n-en,h2 .i18n-en{font-size:.58em;margin-top:4px} h3 .i18n-en{font-size:.78em}
+.lab .i18n-en,.wk .i18n-en{color:inherit;opacity:.85}
+html[lang="mr"] .i18n-en{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+@media print{#lang-pick{display:none}}
+</style></head>
+<body><select aria-label="Language / भाषा" id="lang-pick" onchange="schoolSetLang(this.value)">
+<option value="both">🇮🇳🇬🇧 मराठी + English</option><option value="mr">🇮🇳 मराठी</option><option value="en">🇬🇧 English</option></select>
 <div class="wrap">
 <header>
-  <p><a href="index.html">← Back to the course home</a></p>
-  <h1>🗓️ The study plan — 12 lessons, 4 weeks</h1>
-  <p class="sub">~<b>3 sessions a week</b>: read the lesson (~15 min) + run its section of the lab and one real command (~25 min). Tick lessons off — <b>progress is saved in this browser</b>.</p>
-  <div class="paces"><div class="pace">🐢 <b>Steady:</b> 3 sessions/week → done in 4 weeks.</div><div class="pace">🐇 <b>Fast track:</b> one weekend per part → done in 2 weekends.</div><div class="pace">💰 <b>Cost:</b> zero. Python 3 and the tools already on your laptop.</div></div>
+<p data-en='&lt;a href="index.html"&gt;← Back to the course home&lt;/a&gt;'><a href="index.html">← कोर्सच्या मुख्य पानाकडे परत</a></p>
+<h1 data-en="🗓️ The study plan — 12 lessons, 4 weeks">🗓️ अभ्यास योजना — 12 धडे, 4 आठवडे</h1>
+<p class="sub" data-en="~&lt;b&gt;3 sessions a week&lt;/b&gt;: read the lesson (~15 min) + run its section of the lab and one real command (~25 min). Tick lessons off — &lt;b&gt;progress is saved in this browser&lt;/b&gt;.">~<b>आठवड्याला 3 सत्रे</b>: धडा वाचा (~15 मिनिटे) + लॅबचा त्याचा भाग आणि एक खरी command चालवा (~25 मिनिटे). धडे टिक करा — <b>प्रगती या ब्राउझरमध्ये जपली जाते</b>.</p>
+<div class="paces"><div class="pace" data-en="🐢 &lt;b&gt;Steady:&lt;/b&gt; 3 sessions/week → done in 4 weeks.">🐢 <b>स्थिर:</b> आठवड्याला 3 सत्रे → 4 आठवड्यांत पूर्ण.</div><div class="pace" data-en="🐇 &lt;b&gt;Fast track:&lt;/b&gt; one weekend per part → done in 2 weekends.">🐇 <b>वेगवान मार्ग:</b> प्रत्येक भागाला एक शनिवार-रविवार → 2 शनिवार-रविवारांत पूर्ण.</div><div class="pace" data-en="💰 &lt;b&gt;Cost:&lt;/b&gt; zero. Python 3 and the tools already on your laptop.">💰 <b>खर्च:</b> शून्य. Python 3 आणि तुमच्या लॅपटॉपवर आधीच असलेली साधने.</div></div>
 </header>
 <div class="progress-box"><div class="progress-inner"><span id="ptext">0 / 12</span><div class="bar"><div id="pbar"></div></div></div></div>
 <section class="week" style="--c:#0369a1">
-  <h2><span class="wk">WEEK 1</span> 📮 The post — addresses, rooms, layers</h2>
-  <p class="goal">Why networking, IP and subnets, ports and sockets, the layers. Lab: find your address and your gateway; knock on the usual doors; name the four layers of one curl.</p>
-  <div class="lesson-row"><input type="checkbox" data-l="l01" id="sl01"><label for="sl01"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-01-why-networking/lessons/01-why-networking/README.md">01 · 📮 Why networking</a></label><span class="time">~30 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l02" id="sl02"><label for="sl02"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-02-ip-addresses/lessons/02-ip-addresses/README.md">02 · 🏫 IP addresses &amp; subnets</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l03" id="sl03"><label for="sl03"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-03-ports-sockets/lessons/03-ports-sockets/README.md">03 · 🚪 Ports &amp; sockets</a></label><span class="time">~35 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l04" id="sl04"><label for="sl04"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-04-layers/lessons/04-layers/README.md">04 · 📦 The layers</a></label><span class="time">~40 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> you can read 192.168.0.12/24 aloud, explain why two homes share it, and say which program lives behind :443 on your own machine.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 1&lt;/span&gt; 📮 The post — addresses, rooms, layers'><span class="wk">आठवडा 1</span> 📮 पोस्ट — पत्ते, खोल्या, थर</h2>
+<p class="goal" data-en="Why networking, IP and subnets, ports and sockets, the layers. Lab: find your address and your gateway; knock on the usual doors; name the four layers of one curl.">Networking का, IP आणि subnets, ports आणि sockets, थर. लॅब: तुमचा पत्ता आणि gateway शोधा; नेहमीच्या दारांवर टकटक करा; एका curl चे चार थर सांगा.</p>
+<div class="lesson-row"><input data-l="l01" id="sl01" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-01-why-networking/lessons/01-why-networking/README.md"&gt;01 · 📮 Why networking&lt;/a&gt;' for="sl01"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-01-why-networking/lessons/01-why-networking/README.md">01 · 📮 Networking का</a></label><span class="time" data-en="~30 min">~30 मि.</span></div>
+<div class="lesson-row"><input data-l="l02" id="sl02" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-02-ip-addresses/lessons/02-ip-addresses/README.md"&gt;02 · 🏫 IP addresses &amp;amp; subnets&lt;/a&gt;' for="sl02"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-02-ip-addresses/lessons/02-ip-addresses/README.md">02 · 🏫 IP पत्ते &amp; subnets</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l03" id="sl03" type="checkbox"/><label for="sl03"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-03-ports-sockets/lessons/03-ports-sockets/README.md">03 · 🚪 Ports &amp; sockets</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="lesson-row"><input data-l="l04" id="sl04" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-04-layers/lessons/04-layers/README.md"&gt;04 · 📦 The layers&lt;/a&gt;' for="sl04"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-04-layers/lessons/04-layers/README.md">04 · 📦 थर (layers)</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; you can read 192.168.0.12/24 aloud, explain why two homes share it, and say which program lives behind :443 on your own machine.">🏁 <b>टप्पा:</b> 192.168.0.12/24 तुम्ही मोठ्याने वाचू शकता, दोन घरे ते का वाटून घेतात ते समजावू शकता, आणि तुमच्या मशीनवर :443 मागे कोणता प्रोग्राम राहतो ते सांगू शकता.</div>
 </section>
 <section class="week" style="--c:#0369a1">
-  <h2><span class="wk">WEEK 2</span> 📬 The contracts — TCP, UDP, DNS</h2>
-  <p class="goal">Registered post vs the loudspeaker; the directory. Lab: run the tcp and udp sections; send a DNS question by hand; watch TTLs with dig.</p>
-  <div class="lesson-row"><input type="checkbox" data-l="l05" id="sl05"><label for="sl05"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-05-tcp-udp/lessons/05-tcp-udp/README.md">05 · 📬 TCP vs UDP</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l06" id="sl06"><label for="sl06"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-06-dns/lessons/06-dns/README.md">06 · 📖 DNS</a></label><span class="time">~40 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> you saw three pieces become one receipt, ten shouts become six, and a 29-byte question become an address with a TTL.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 2&lt;/span&gt; 📬 The contracts — TCP, UDP, DNS'><span class="wk">आठवडा 2</span> 📬 करार — TCP, UDP, DNS</h2>
+<p class="goal" data-en="Registered post vs the loudspeaker; the directory. Lab: run the tcp and udp sections; send a DNS question by hand; watch TTLs with dig.">नोंदणीकृत टपाल विरुद्ध लाउडस्पीकर; निर्देशिका. लॅब: tcp आणि udp भाग चालवा; DNS प्रश्न हाताने पाठवा; dig ने TTL पहा.</p>
+<div class="lesson-row"><input data-l="l05" id="sl05" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-05-tcp-udp/lessons/05-tcp-udp/README.md"&gt;05 · 📬 TCP vs UDP&lt;/a&gt;' for="sl05"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-05-tcp-udp/lessons/05-tcp-udp/README.md">05 · 📬 TCP विरुद्ध UDP</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l06" id="sl06" type="checkbox"/><label for="sl06"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-06-dns/lessons/06-dns/README.md">06 · 📖 DNS</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; you saw three pieces become one receipt, ten shouts become six, and a 29-byte question become an address with a TTL.">🏁 <b>टप्पा:</b> तीन तुकड्यांची एक पावती, दहा आवाजांचे सहा, आणि 29-byte प्रश्नाचा TTL सह पत्ता झालेला तुम्ही पाहिलात.</div>
 </section>
 <section class="week" style="--c:#4338ca">
-  <h2><span class="wk">WEEK 3</span> 🔒 The building — HTTP, TLS, routing, the gate</h2>
-  <p class="goal">The slip on the wire, the sealed envelope, the corridor map, the firewall. Lab: type an HTTP request by hand; read a certificate; traceroute to three sites; explain refused vs timed out.</p>
-  <div class="lesson-row"><input type="checkbox" data-l="l07" id="sl07"><label for="sl07"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-07-http-on-the-wire/lessons/07-http-on-the-wire/README.md">07 · 📨 HTTP on the wire</a></label><span class="time">~35 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l08" id="sl08"><label for="sl08"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-08-tls/lessons/08-tls/README.md">08 · 🔒 TLS &amp; certificates</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l09" id="sl09"><label for="sl09"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-09-routing/lessons/09-routing/README.md">09 · 🧭 Routing &amp; the internet</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l10" id="sl10"><label for="sl10"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-10-firewalls-nat-vpn/lessons/10-firewalls-nat-vpn/README.md">10 · 🚧 Firewalls, NAT &amp; VPNs</a></label><span class="time">~40 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> you can write a valid HTTP/1.1 request from memory, read who signed a certificate and when it expires, and tell a firewall from an empty room by the error.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 3&lt;/span&gt; 🔒 The building — HTTP, TLS, routing, the gate'><span class="wk">आठवडा 3</span> 🔒 इमारत — HTTP, TLS, routing, गेट</h2>
+<p class="goal" data-en="The slip on the wire, the sealed envelope, the corridor map, the firewall. Lab: type an HTTP request by hand; read a certificate; traceroute to three sites; explain refused vs timed out.">तारेवरची चिठ्ठी, सील केलेला लखोटा, कॉरिडॉरचा नकाशा, firewall. लॅब: HTTP विनंती हाताने टाइप करा; certificate वाचा; तीन साइट्सना traceroute करा; refused विरुद्ध timed out समजावा.</p>
+<div class="lesson-row"><input data-l="l07" id="sl07" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-07-http-on-the-wire/lessons/07-http-on-the-wire/README.md"&gt;07 · 📨 HTTP on the wire&lt;/a&gt;' for="sl07"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-07-http-on-the-wire/lessons/07-http-on-the-wire/README.md">07 · 📨 तारेवरचे HTTP</a></label><span class="time" data-en="~35 min">~35 मि.</span></div>
+<div class="lesson-row"><input data-l="l08" id="sl08" type="checkbox"/><label for="sl08"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-08-tls/lessons/08-tls/README.md">08 · 🔒 TLS &amp; certificates</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l09" id="sl09" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-09-routing/lessons/09-routing/README.md"&gt;09 · 🧭 Routing &amp;amp; the internet&lt;/a&gt;' for="sl09"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-09-routing/lessons/09-routing/README.md">09 · 🧭 Routing &amp; internet</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l10" id="sl10" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-10-firewalls-nat-vpn/lessons/10-firewalls-nat-vpn/README.md"&gt;10 · 🚧 Firewalls, NAT &amp;amp; VPNs&lt;/a&gt;' for="sl10"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-10-firewalls-nat-vpn/lessons/10-firewalls-nat-vpn/README.md">10 · 🚧 Firewalls, NAT &amp; VPN</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; you can write a valid HTTP/1.1 request from memory, read who signed a certificate and when it expires, and tell a firewall from an empty room by the error.">🏁 <b>टप्पा:</b> वैध HTTP/1.1 विनंती तुम्ही पाठ लिहू शकता, certificate वर कोणी सही केली आणि कधी संपते ते वाचू शकता, आणि चुकीच्या रूपावरून firewall आणि रिकामी खोली ओळखू शकता.</div>
 </section>
 <section class="week" style="--c:#4338ca">
-  <h2><span class="wk">WEEK 4</span> 🏪 The desk and the ladder — load balancers, CDNs, debugging</h2>
-  <p class="goal">The reception desk, the copy near the reader, the triage ladder. Lab: run net/lab.sh against a site you use; break DNS on purpose and climb the ladder.</p>
-  <div class="lesson-row"><input type="checkbox" data-l="l11" id="sl11"><label for="sl11"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-11-load-balancers-cdn/lessons/11-load-balancers-cdn/README.md">11 · 🏪 Load balancers, proxies &amp; CDNs</a></label><span class="time">~40 min</span></div>
-  <div class="lesson-row"><input type="checkbox" data-l="l12" id="sl12"><label for="sl12"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-12-debugging/lessons/12-debugging/README.md">12 · 🔧 Debugging the network</a></label><span class="time">~45 min</span></div>
-  <div class="milestone">🏁 <b>Checkpoint:</b> 🏆 Capstone: a one-page runbook — for &#39;the site is down&#39;, the six rungs, the command on each, and what each error means.</div>
+<h2 data-en='&lt;span class="wk"&gt;WEEK 4&lt;/span&gt; 🏪 The desk and the ladder — load balancers, CDNs, debugging'><span class="wk">आठवडा 4</span> 🏪 कक्ष आणि शिडी — load balancers, CDN, debugging</h2>
+<p class="goal" data-en="The reception desk, the copy near the reader, the triage ladder. Lab: run net/lab.sh against a site you use; break DNS on purpose and climb the ladder.">स्वागत कक्ष, वाचकाजवळची प्रत, तपासणीची शिडी. लॅब: तुम्ही वापरता त्या साइटवर net/lab.sh चालवा; मुद्दाम DNS मोडा आणि शिडी चढा.</p>
+<div class="lesson-row"><input data-l="l11" id="sl11" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-11-load-balancers-cdn/lessons/11-load-balancers-cdn/README.md"&gt;11 · 🏪 Load balancers, proxies &amp;amp; CDNs&lt;/a&gt;' for="sl11"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-11-load-balancers-cdn/lessons/11-load-balancers-cdn/README.md">11 · 🏪 Load balancers, proxies &amp; CDN</a></label><span class="time" data-en="~40 min">~40 मि.</span></div>
+<div class="lesson-row"><input data-l="l12" id="sl12" type="checkbox"/><label data-en='&lt;a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-12-debugging/lessons/12-debugging/README.md"&gt;12 · 🔧 Debugging the network&lt;/a&gt;' for="sl12"><a href="https://github.com/BaluRaut/learn-networking-school/blob/lesson-12-debugging/lessons/12-debugging/README.md">12 · 🔧 Network चे debugging</a></label><span class="time" data-en="~45 min">~45 मि.</span></div>
+<div class="milestone" data-en="🏁 &lt;b&gt;Checkpoint:&lt;/b&gt; 🏆 Capstone: a one-page runbook — for 'the site is down', the six rungs, the command on each, and what each error means.">🏁 <b>टप्पा:</b> 🏆 कळस-प्रकल्प: एका पानाचे runbook — 'साइट बंद आहे' साठी सहा पायऱ्या, प्रत्येकीवरची command, आणि प्रत्येक चुकीचा अर्थ.</div>
 </section>
 <div id="done">
-  <h2>🎓 12 / 12 — the post room is yours!</h2>
-  <p class="sub" style="margin:10px auto 0">Next: the <a href="https://baluraut.github.io/learn-aws-school/">AWS school</a> rents this building by the hour (VPCs, subnets, security groups, load balancers), the <a href="https://baluraut.github.io/learn-kubernetes-school/">Kubernetes school</a> puts a reception desk in every cluster, and the <a href="https://baluraut.github.io/school/">School portal</a> has the rest.</p>
+<h2 data-en="🎓 12 / 12 — the post room is yours!">🎓 12 / 12 — पोस्ट रूम तुमची झाली!</h2>
+<p class="sub" data-en='Next: the &lt;a href="https://baluraut.github.io/learn-aws-school/"&gt;AWS school&lt;/a&gt; rents this building by the hour (VPCs, subnets, security groups, load balancers), the &lt;a href="https://baluraut.github.io/learn-kubernetes-school/"&gt;Kubernetes school&lt;/a&gt; puts a reception desk in every cluster, and the &lt;a href="https://baluraut.github.io/school/"&gt;School portal&lt;/a&gt; has the rest.' style="margin:10px auto 0">पुढे: <a href="https://baluraut.github.io/learn-aws-school/">AWS शाळा</a> ही इमारत तासावर भाड्याने देते (VPC, subnets, security groups, load balancers), <a href="https://baluraut.github.io/learn-kubernetes-school/">Kubernetes शाळा</a> प्रत्येक cluster मध्ये स्वागत कक्ष ठेवते, आणि बाकीचे <a href="https://baluraut.github.io/school/">शाळेच्या पोर्टलवर</a>.</p>
 </div>
-<footer>
-  Learn Networking School · the post room is in the repo · <a href="index.html">Course home</a> · <a href="lesson-diagrams.html">Lesson diagrams</a> · <a href="https://github.com/BaluRaut/learn-networking-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 the Dictionary</a> · <a href="https://baluraut.github.io/school/">🏫 all schools</a> · <a href="https://github.com/BaluRaut/learn-networking-school/issues">🐛 found a mistake?</a>
-</footer>
+<footer data-en='
+  Learn Networking School · the post room is in the repo · &lt;a href="index.html"&gt;Course home&lt;/a&gt; · &lt;a href="lesson-diagrams.html"&gt;Lesson diagrams&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-networking-school"&gt;GitHub&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/dictionary.html"&gt;📖 the Dictionary&lt;/a&gt; · &lt;a href="https://baluraut.github.io/school/"&gt;🏫 all schools&lt;/a&gt; · &lt;a href="https://github.com/BaluRaut/learn-networking-school/issues"&gt;🐛 found a mistake?&lt;/a&gt;
+'>Learn Networking School · पोस्ट रूम रेपोच्या आत आहे · <a href="index.html">कोर्स मुख्य पान</a> · <a href="lesson-diagrams.html">धड्यांच्या आकृत्या</a> · <a href="https://github.com/BaluRaut/learn-networking-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 शब्दकोश</a> · <a href="https://baluraut.github.io/school/">🏫 सर्व शाळा</a> · <a href="https://github.com/BaluRaut/learn-networking-school/issues">🐛 चूक सापडली?</a></footer>
 </div>
 <script>
 (function(){
@@ -128,5 +141,42 @@
   render();
 })();
 </script>
-</body>
+
+<script id="i18n-js">
+var I18N_INLINE={A:1,SPAN:1,CODE:1,B:1,I:1,EM:1,STRONG:1,BUTTON:1,LABEL:1,SUMMARY:1,SMALL:1,KBD:1};
+function schoolSetLang(l){
+  if(l!=='en'&&l!=='mr'&&l!=='both') l='both';
+  try{localStorage.setItem('school-lang2',l)}catch(e){}
+  document.documentElement.setAttribute('lang', l==='en' ? 'en' : 'mr');
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(!el.hasAttribute('data-mr')) el.setAttribute('data-mr', el.innerHTML);
+    var en=el.getAttribute('data-en'), mr=el.getAttribute('data-mr');
+    var svg = el.namespaceURI && el.namespaceURI.indexOf('svg')>-1;
+    if(svg){
+      el.innerHTML = (l==='en') ? en : mr;
+      var t=el.querySelector('title'); if(t) t.remove();
+      if(l==='both'){ t=document.createElementNS('http://www.w3.org/2000/svg','title'); t.textContent=en.replace(/<[^>]+>/g,''); el.insertBefore(t, el.firstChild); }
+      return;
+    }
+    if(l==='en') el.innerHTML = en;
+    else if(l==='mr') el.innerHTML = mr;
+    else if(en.replace(/\s+/g,' ').trim()===mr.replace(/\s+/g,' ').trim()) el.innerHTML = mr;
+    else {
+      var e2=en.replace(/<span class="(ln|num|wk)">[\s\S]*?<\/span>\s*/g,'');
+      if(e2.charAt(0)!=='<' && mr.charAt(0)!=='<'){           /* drop the prefix both languages share, e.g. "01 · 🏢 " */
+        var i=0; while(i<e2.length&&i<mr.length&&e2.charAt(i)===mr.charAt(i)) i++;
+        var cut=e2.lastIndexOf(' ',i); if(cut>0 && cut<e2.length-1) e2=e2.slice(cut+1);
+      }
+      el.innerHTML = mr + '<span class="i18n-en'+(I18N_INLINE[el.tagName]?' i':'')+'">'+e2+'</span>';
+    }
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(function(el){
+    if(!el.hasAttribute('data-mr-ph')) el.setAttribute('data-mr-ph', el.getAttribute('placeholder'));
+    el.setAttribute('placeholder', (l==='en') ? el.getAttribute('data-en-ph') : (l==='mr' ? el.getAttribute('data-mr-ph') : el.getAttribute('data-mr-ph')+' / '+el.getAttribute('data-en-ph')));
+  });
+  var p=document.getElementById('lang-pick'); if(p) p.value=l;
+}
+(function(){ var l='both'; try{ l=localStorage.getItem('school-lang2')||'both'; }catch(e){}
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){schoolSetLang(l)}); else schoolSetLang(l); })();
+</script></body>
 </html>
