@@ -1,0 +1,42 @@
+
+── TCP — the registered post: connect (handshake), then bytes arrive complete and in order
+   my socket ('127.0.0.1', NNNNN) ↔ the clerk's socket ('127.0.0.1', NNNNN)   (ip:port on both ends = one connection)
+   sent 3 pieces; the clerk answered: receipt: 31 bytes from 127.0.0.1:NNNNN
+   the shape: a connection first, then a reliable ordered byte stream — you add the message boundaries (newline, length, HTTP)
+
+── UDP — the loudspeaker: no connection, one datagram at a time, and some never arrive
+   10 announcements made, 6 reached the corridor, 6 heard: ['announcement 0', 'announcement 2', 'announcement 4', 'announcement 5', 'announcement 7', 'announcement 9']
+   the shape: cheap and fast, no ordering, no retransmit — DNS, video, games; anything else wants TCP
+
+── Ports — room numbers: a quick knock on the usual doors of this machine
+   127.0.0.1:22    ssh                          closed
+   127.0.0.1:80    http                         closed
+   127.0.0.1:443   https                        closed
+   127.0.0.1:NNNNN  postgres                     open  ← someone is listening
+   127.0.0.1:NNNNN  redis                        closed
+   127.0.0.1:NNNNN  the API school's counter     closed
+   127.0.0.1:NNNNN  the auth demo                closed
+   the shape: an address says WHICH computer, a port says WHICH program; 0–1023 are the well-known rooms
+
+── DNS — the directory: ask 8.8.8.8 'what is the address of example.com?' — one UDP packet each way
+   sent 29 bytes · got 61 bytes · id matches: True · answers: 2 · flags 0x8180
+   A record → 172.66.147.243   ttl 300s  (the directory says: cache me this long)
+   A record → 104.20.23.154   ttl 300s  (the directory says: cache me this long)
+   the shape: a name → an IP, cached by TTL, asked over UDP port 53; 'is it DNS?' is the first question of every outage
+
+── HTTP — the slip in the envelope: a GET to example.com, typed by hand on port 80
+   → GET / HTTP/1.1 · Host: example.com
+   ← HTTP/1.1 200 OK · Content-Type: text/html
+   ← body: 571 bytes   (HTTP is just text over a TCP stream; the API school lives one layer up)
+
+── TLS — the sealed envelope: handshake with example.com:443 and read its certificate
+   protocol TLSv1.2 · cipher ECDHE-ECDSA-CHACHA20-POLY1305
+   certificate for: example.com   issued by: SSL Corporation   valid until: Oct 27 22:17:21 2026 GMT
+   also valid for: ['example.com', '*.example.com']
+   the shape: the server proves its name with a certificate a CA signed; then the envelope is sealed — HTTPS, and every 'S'
+
+── Route — which corridor? the address this machine would use to reach the internet, and its default gateway
+   my outward-facing address: 192.168.x.x   (a private address → NAT at the gate turns it into the school's one public address)
+   run `traceroute 8.8.8.8` (or `tracert`) to see every corridor: your router → your ISP → an exchange → Google; each hop is a router forwarding by prefix
+
+✅ the post room: addresses and rooms (IP:port) · registered post vs loudspeaker (TCP/UDP) · the directory (DNS) · the slip (HTTP) · the seal (TLS) · the corridors (routes)

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz — Learn Networking School</title>
+<meta name="description" content="Self-test quiz for Learn Networking School — 15 questions with explanations.">
+<meta property="og:title" content="Quiz — Learn Networking School">
+<meta property="og:description" content="Self-test quiz for Learn Networking School — 15 questions with explanations.">
+<meta property="og:image" content="https://baluraut.github.io/learn-networking-school/images/big-picture-4k.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0369a1; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+  .wrap { max-width:1280px; margin:0 auto; padding:28px 20px 60px; }
+  @media (min-width: 1660px) { .wrap { max-width: 1580px; } }
+  a { color:var(--blue); } h1 { font-size:2rem; line-height:1.25; } h2 { font-size:1.4rem; margin:44px 0 6px; }
+  .sub { color:var(--muted); max-width:74ch; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 8px; }
+  .chip { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:6px 14px; font-size:.85rem; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:16px; }
+  .lesson { background:var(--card); border:1px solid var(--line); border-top:5px solid var(--c,var(--accent)); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:6px; }
+  .lesson .top { display:flex; align-items:center; gap:10px; }
+  .lesson .num { flex:none; width:30px; height:30px; border-radius:50%; background:var(--c,var(--accent)); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; }
+  .lesson h3 { font-size:1.02rem; line-height:1.3; } .lesson .ana { color:var(--muted); font-size:.9rem; }
+  .lesson code { font-size:.78rem; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+  .lesson a.go { margin-top:auto; font-weight:600; font-size:.9rem; text-decoration:none; } .lesson a.go+a.go { margin-top:0; } .lesson a.go:hover { text-decoration:underline; }
+  .callout { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--ok); border-radius:14px; padding:18px 20px; margin-top:16px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; overflow-x:auto; font-size:.88rem; margin-top:12px; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; border-radius:10px; padding:10px 18px; text-decoration:none; font-weight:700; margin:14px 10px 0 0; }
+  .btn.alt { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .vs { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:16px; }
+  .vcol { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; } .vcol h3 { margin-bottom:8px; }
+  .vcol ul { margin-left:18px; color:var(--muted); font-size:.93rem; }
+  .tbl{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:12px} .tbl table{border-collapse:collapse;width:100%;font-size:.9rem} .tbl th,.tbl td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top} .tbl th{background:var(--bg)}
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:.88rem; }
+
+.wrap { max-width:900px; margin:0 auto; padding:28px 20px 60px; }
+.scorebox { position:sticky; top:0; background:var(--bg); padding:10px 0; z-index:5; }
+.score { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px 16px; font-weight:700; }
+.qcard { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--accent); border-radius:14px; padding:18px 20px; margin-top:16px; }
+.qcard h3 { font-size:1.02rem; margin-bottom:10px; }
+.opt { display:block; width:100%; text-align:left; margin-top:8px; padding:10px 14px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink); font:inherit; cursor:pointer; }
+.opt:hover { border-color:var(--accent); }
+.opt.right { border-color:var(--ok); background:color-mix(in srgb, var(--ok) 12%, var(--bg)); }
+.opt.wrong { border-color:var(--bad); background:color-mix(in srgb, var(--bad) 12%, var(--bg)); }
+.why { display:none; margin-top:10px; color:var(--muted); font-size:.92rem; border-top:1px dashed var(--line); padding-top:8px; }
+.reset { margin-top:20px; background:var(--accent); color:#fff; border:none; border-radius:10px; padding:10px 18px; font:inherit; font-weight:700; cursor:pointer; }
+.parts{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px} .pbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:.88rem;cursor:pointer} .pbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<p><a href="index.html">← Back to the course home</a></p>
+<h1>🧪 The 🕸️ Networking quiz</h1>
+<p class="sub">15 questions — pick an answer, get the why. Filter by Part below. One attempt per question (until reset). Your best score is saved in this browser.</p>
+<div class="scorebox"><div class="score" id="score">0 / 15 · best: —</div></div>
+<div class="parts" id="parts"><button class="pbtn on" onclick="setPart(0)">All 15</button><button class="pbtn" onclick="setPart(1)">📮 Part 1 the post</button><button class="pbtn" onclick="setPart(2)">🏗️ Part 2 the building</button></div>
+<div id="quiz"></div>
+<button class="reset" onclick="reset()">↺ Reset &amp; retake</button>
+<footer>Part of <a href="https://baluraut.github.io/school/">🏫 The School</a> · <a href="index.html">course home</a> · <a href="https://github.com/BaluRaut/learn-networking-school/issues">🐛 found a mistake?</a></footer>
+</div>
+<script>
+var QS = [{"q": "What does an IP address identify?", "o": ["A program on a computer", "A computer (a building) on the network", "A web page"], "c": 1, "w": "L02: the address finds the building; the port finds the room (program).", "p": 1}, {"q": "192.168.0.0/24 — what does the /24 mean?", "o": ["24 computers", "The first 24 bits are the network (the wing); the last 8 pick the host", "A port range"], "c": 1, "w": "L02: CIDR: /24 leaves 8 bits → 256 addresses in one wing.", "p": 1}, {"q": "Two homes both have a laptop at 192.168.0.12. How do both reach the internet?", "o": ["They cannot", "NAT at each home&#39;s gate rewrites the private address to that home&#39;s one public address", "IPv6 magic"], "c": 1, "w": "L02/L10: private ranges are reused everywhere; the gate translates.", "p": 1}, {"q": "A socket is…", "o": ["A port", "One connection: (local ip:port ↔ remote ip:port)", "A cable"], "c": 1, "w": "L03: four numbers name one conversation; a server listens on a room, each visitor gets a desk.", "p": 1}, {"q": "Which layer knows about ports?", "o": ["IP (the bag)", "TCP/UDP (the envelope)", "Ethernet (the van)"], "c": 1, "w": "L04: addresses are IP&#39;s job, ports are the transport layer&#39;s.", "p": 1}, {"q": "TCP gives you…", "o": ["Speed above all", "A handshake, ordered complete bytes, retransmission", "Message boundaries"], "c": 1, "w": "L05: a reliable STREAM — boundaries (newline, length, HTTP) are yours to add.", "p": 1}, {"q": "Why does DNS use UDP?", "o": ["It is more reliable", "One tiny question, one tiny answer — no handshake worth paying for", "Because port 53 is UDP-only"], "c": 1, "w": "L06: a 29-byte question; the resolver retries if it is lost.", "p": 1}, {"q": "A DNS record has TTL 300. You change it. When does everyone see the new address?", "o": ["Instantly", "Within about 300 seconds, as caches expire", "Next day"], "c": 1, "w": "L06: caches keep the old answer for up to one TTL.", "p": 1}, {"q": "HTTP/3 runs over…", "o": ["TCP", "QUIC over UDP", "TLS 1.2"], "c": 1, "w": "L07: QUIC rebuilds reliability without head-of-line blocking.", "p": 2}, {"q": "What does a TLS certificate prove?", "o": ["The site is honest", "The server holds the key for that name, vouched for by a trusted CA", "The connection is fast"], "c": 1, "w": "L08: identity of the name, then encryption — not the content&#39;s honesty.", "p": 2}, {"q": "&#39;Connection timed out&#39; vs &#39;connection refused&#39; — which smells like a firewall?", "o": ["Refused", "Timed out — the gate dropped you silently; an empty room refuses quickly", "Both"], "c": 1, "w": "L10/L12: firewalls drop, closed ports reset.", "p": 2}, {"q": "Your laptop wants to reach 93.184.216.34. Not in its wing. It sends the packet to…", "o": ["DNS", "The default gateway (your router), which forwards by prefix", "The CDN"], "c": 1, "w": "L09: nobody knows the whole map; everyone knows the next corridor.", "p": 2}, {"q": "A load balancer that routes by URL path is…", "o": ["L4", "L7", "DNS round-robin"], "c": 1, "w": "L11: L7 sees the request; L4 sees only address and port.", "p": 2}, {"q": "A CDN is…", "o": ["A faster server", "A copy of the notice board in every city, cached by URL", "A firewall"], "c": 1, "w": "L11: the reception desk near the reader.", "p": 2}, {"q": "First rung of the debugging ladder?", "o": ["Restart the server", "Is it DNS? — dig +short the name", "Check the firewall"], "c": 1, "w": "L12: DNS → reach → route → port → TLS → HTTP → logs.", "p": 2}];
+var KEY='quiz-learn-networking-school', answered={}, score=0, PART=0, SEL=QS;
+function setPart(p){PART=p;SEL=p?QS.filter(function(q){return q.p===p}):QS;[].slice.call(document.querySelectorAll('.pbtn')).forEach(function(b,i){b.classList.toggle('on',i===p)});reset();}
+var best = parseInt(localStorage.getItem(KEY)||'-1');
+function render() {
+  var el = document.getElementById('quiz'); el.innerHTML='';
+  SEL.forEach(function(q,i) {
+    var card=document.createElement('div'); card.className='qcard';
+    card.innerHTML='<h3>'+(i+1)+'. '+q.q+'</h3>';
+    q.o.forEach(function(opt,j) {
+      var b=document.createElement('button'); b.className='opt'; b.textContent=opt;
+      b.onclick=function() {
+        if (answered[i]!==undefined) return;
+        answered[i]=j;
+        if (j===q.c) { b.classList.add('right'); score++; }
+        else { b.classList.add('wrong'); card.querySelectorAll('.opt')[q.c].classList.add('right'); }
+        card.querySelector('.why').style.display='block';
+        update();
+      };
+      card.appendChild(b);
+    });
+    var why=document.createElement('div'); why.className='why'; why.textContent='💡 '+q.w;
+    card.appendChild(why);
+    el.appendChild(card);
+  });
+}
+function update() {
+  var done=Object.keys(answered).length;
+  if (PART===0 && done===QS.length && score>best) { best=score; localStorage.setItem(KEY,best); }
+  document.getElementById('score').textContent=score+' / '+SEL.length+(done===SEL.length?' — done! 🎓':'')+' · best (all 15): '+(best<0?'—':best+'/'+QS.length);
+}
+function reset() { answered={}; score=0; render(); update(); }
+render(); update();
+</script>
+</body>
+</html>

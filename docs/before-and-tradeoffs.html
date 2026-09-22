@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before & trade-offs — Learn Networking School</title>
+<meta name="description" content="For every big networking idea: what came before, merits and demerits, and where to use it vs where not.">
+<meta property="og:title" content="Before & trade-offs — Learn Networking School">
+<meta property="og:description" content="For every big networking idea: what came before, merits and demerits, and where to use it vs where not.">
+<meta property="og:image" content="https://baluraut.github.io/learn-networking-school/images/big-picture-4k.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root { --bg:#f8fafc; --card:#fff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --accent:#0369a1; --ok:#16a34a; --blue:#2563eb; --bad:#dc2626; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b1220; --card:#131c2e; --ink:#e2e8f0; --muted:#94a3b8; --line:#253349; } }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.6; }
+  .wrap { max-width:1280px; margin:0 auto; padding:28px 20px 60px; }
+  @media (min-width: 1660px) { .wrap { max-width: 1580px; } }
+  a { color:var(--blue); } h1 { font-size:2rem; line-height:1.25; } h2 { font-size:1.4rem; margin:44px 0 6px; }
+  .sub { color:var(--muted); max-width:74ch; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 8px; }
+  .chip { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:6px 14px; font-size:.85rem; color:var(--muted); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; margin-top:16px; }
+  .lesson { background:var(--card); border:1px solid var(--line); border-top:5px solid var(--c,var(--accent)); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:6px; }
+  .lesson .top { display:flex; align-items:center; gap:10px; }
+  .lesson .num { flex:none; width:30px; height:30px; border-radius:50%; background:var(--c,var(--accent)); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.9rem; }
+  .lesson h3 { font-size:1.02rem; line-height:1.3; } .lesson .ana { color:var(--muted); font-size:.9rem; }
+  .lesson code { font-size:.78rem; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+  .lesson a.go { margin-top:auto; font-weight:600; font-size:.9rem; text-decoration:none; } .lesson a.go+a.go { margin-top:0; } .lesson a.go:hover { text-decoration:underline; }
+  .callout { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--ok); border-radius:14px; padding:18px 20px; margin-top:16px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; overflow-x:auto; font-size:.88rem; margin-top:12px; }
+  .btn { display:inline-block; background:var(--accent); color:#fff; border-radius:10px; padding:10px 18px; text-decoration:none; font-weight:700; margin:14px 10px 0 0; }
+  .btn.alt { background:transparent; color:var(--ink); border:1px solid var(--line); }
+  .vs { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; margin-top:16px; }
+  .vcol { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; } .vcol h3 { margin-bottom:8px; }
+  .vcol ul { margin-left:18px; color:var(--muted); font-size:.93rem; }
+  .tbl{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-top:12px} .tbl table{border-collapse:collapse;width:100%;font-size:.9rem} .tbl th,.tbl td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top} .tbl th{background:var(--bg)}
+  footer { margin-top:56px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:.88rem; }
+
+  .term { background:var(--card); border:1px solid var(--line); border-top:6px solid var(--c,var(--accent)); border-radius:16px; padding:22px; margin-top:26px; scroll-margin-top:16px; }
+  .term h2 { font-size:1.3rem; margin-bottom:10px; }
+  .hist { background:var(--bg); border-left:5px solid var(--c,var(--accent)); border-radius:10px; padding:14px 16px; margin:10px 0 14px; }
+  .hist b { display:block; margin-bottom:4px; } .hist p { color:var(--muted); font-size:.95rem; }
+  .quad { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
+  .q { border:1px solid var(--line); border-radius:12px; padding:14px; }
+  .q h4 { margin-bottom:6px; font-size:.98rem; } .q ul { margin-left:18px; color:var(--muted); font-size:.92rem; }
+  .q.merit { border-top:4px solid var(--ok); } .q.demerit { border-top:4px solid var(--bad); }
+  .q.use { border-top:4px solid var(--blue); } .q.avoid { border-top:4px solid #f59e0b; }
+
+  .toc { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px; }
+  .toc a { border:1px solid var(--line); background:var(--card); border-radius:999px; padding:5px 12px; font-size:.82rem; color:var(--muted); text-decoration:none; }
+  .toc a:hover { color:var(--ink); border-color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <p><a href="index.html">← Back to the course home</a></p>
+  <h1>⏮️ Before &amp; trade-offs</h1>
+  <p class="sub">Every tool replaced something worse — and is itself the wrong tool somewhere. For each big idea: what life was like <b>before</b>, honest <b>merits ✅ / demerits ❌</b>, and <b>where to use it 👍 vs not 👎</b>.</p>
+  <nav class="toc"><a href="#tcpudp">📬 TCP vs UDP</a><a href="#ipv6">🏫 IPv4 vs IPv6</a><a href="#dns">📖 Public vs private DNS</a><a href="#tls">🔒 TLS 1.3 vs 1.2</a><a href="#nat">🚪 NAT vs public addresses</a><a href="#lb">🏪 L4 vs L7 load balancing</a><a href="#vpn">🕳️ VPN vs zero trust</a></nav>
+</header>
+
+<section class="term" id="tcpudp" style="--c:#0369a1">
+  <h2>📬 TCP vs UDP — lesson 05</h2>
+  <div class="hist"><b>⏮️ Before both (1970s ARPANET)</b><p>One protocol tried to do everything; the split into IP (delivery) and TCP/UDP (contracts) is what let the internet grow.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>TCP: complete, ordered, retransmitted — you never think about loss</li><li>UDP: no handshake, no buffers, tiny headers — the fastest thing possible</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>TCP: a round trip to start, head-of-line blocking, buffers</li><li>UDP: you handle loss, order and congestion yourself</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>TCP for anything that must be complete: web, mail, databases</li><li>UDP for DNS, video, voice, games — and QUIC/HTTP/3</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>UDP for a file transfer you wrote yourself</li><li>TCP for 20 ms voice packets</li></ul></div>
+  </div>
+</section>
+<section class="term" id="ipv6" style="--c:#0369a1">
+  <h2>🏫 IPv4 vs IPv6 — lesson 02</h2>
+  <div class="hist"><b>⏮️ Before IPv6 (1998)</b><p>Four billion addresses looked infinite in 1981; NAT was invented to stretch them, and every home got the same 192.168.0.x.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>IPv6: 340 undecillion addresses, no NAT needed, every device reachable</li><li>IPv4: everything supports it, every engineer knows it</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>IPv6: two stacks to run, longer addresses to read, some networks still lack it</li><li>IPv4: scarce, expensive, NAT everywhere</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>dual-stack by default; IPv6 first on mobile and in new clouds</li><li>IPv4 for anything that must work everywhere today</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>IPv6-only for a public service in 2026</li><li>IPv4-only for a new mobile app backend</li></ul></div>
+  </div>
+</section>
+<section class="term" id="dns" style="--c:#0369a1">
+  <h2>📖 Public vs private DNS — lesson 06</h2>
+  <div class="hist"><b>⏮️ Before DNS (hosts.txt, 1983)</b><p>Every computer downloaded one text file of every name on the network. It stopped scaling at a few hundred hosts.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>public DNS (Route 53, Cloudflare): reachable by everyone, anycast, fast</li><li>private zones: internal names (db.internal) that never leak</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>public: a typo is global in one TTL</li><li>private: split-horizon confusion — the same name meaning two things</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>public for anything users type</li><li>private for service discovery inside a VPC or cluster</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>internal database names in public DNS</li><li>a public site only in a private zone</li></ul></div>
+  </div>
+</section>
+<section class="term" id="tls" style="--c:#4338ca">
+  <h2>🔒 TLS 1.3 vs 1.2 — lesson 08</h2>
+  <div class="hist"><b>⏮️ Before TLS (SSL, 1995)</b><p>HTTP sent passwords in the clear; SSL bolted encryption on, then accumulated twenty years of broken ciphers.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>1.3: one round trip, only strong ciphers, forward secrecy by default</li><li>1.2: supported by ancient clients and appliances</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>1.3: some middleboxes still choke on it</li><li>1.2: allows weak configurations if you let it</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>1.3 everywhere; keep 1.2 only for known old clients</li><li>never anything older</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>TLS 1.0/1.1 or SSL for anything</li><li>disabling TLS &#39;for speed&#39; inside a network</li></ul></div>
+  </div>
+</section>
+<section class="term" id="nat" style="--c:#4338ca">
+  <h2>🚪 NAT vs public addresses — lessons 02, 10</h2>
+  <div class="hist"><b>⏮️ Before NAT (~1994)</b><p>Every machine had a public address and was reachable from the whole internet — fine for 1,000 universities, fatal for a billion phones.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>NAT: one public address serves a building; nothing inside is reachable unless you say so</li><li>public addresses: simple, no port mapping, peer-to-peer just works</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>NAT: inbound needs port forwarding; carrier-grade NAT breaks some apps</li><li>public: every device is a target; addresses are scarce</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>NAT for homes, offices, private subnets in the cloud</li><li>public addresses for servers that must be reached</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>a database with a public address</li><li>expecting inbound connections to a phone behind carrier NAT</li></ul></div>
+  </div>
+</section>
+<section class="term" id="lb" style="--c:#4338ca">
+  <h2>🏪 L4 vs L7 load balancing — lesson 11</h2>
+  <div class="hist"><b>⏮️ Before load balancers (DNS round-robin)</b><p>One name pointed at three addresses and hoped; a dead server still got a third of the visitors until its TTL expired.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>L4: fast, protocol-agnostic, keeps TLS end-to-end</li><li>L7: routes by URL and header, terminates TLS, retries, can rewrite</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>L4: cannot see the request, so cannot route by path</li><li>L7: more CPU, it must understand HTTP</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>L4 for databases, gRPC passthrough, raw TCP</li><li>L7 for web apps, APIs, canary routing</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>L7 for a Postgres connection</li><li>L4 when you need per-path routing</li></ul></div>
+  </div>
+</section>
+<section class="term" id="vpn" style="--c:#4338ca">
+  <h2>🕳️ VPN vs zero trust — lesson 10</h2>
+  <div class="hist"><b>⏮️ Before VPNs</b><p>Working from outside the building meant a modem into the office; the network&#39;s edge WAS the security.</p></div>
+  <div class="quad">
+    <div class="q merit"><h4>✅ Merits</h4><ul><li>VPN: one tunnel, you are inside; simple mental model</li><li>zero trust: every request authenticated; no &#39;inside&#39;</li></ul></div>
+    <div class="q demerit"><h4>❌ Demerits</h4><ul><li>VPN: inside = trusted, so one stolen laptop sees everything</li><li>zero trust: every service needs identity-aware access (mTLS, SSO)</li></ul></div>
+    <div class="q use"><h4>👍 Use when</h4><ul><li>VPN for small teams and legacy systems</li><li>zero trust for anything public-facing or large</li></ul></div>
+    <div class="q avoid"><h4>👎 Think twice when</h4><ul><li>a flat VPN as the only control for a hundred services</li><li>zero trust theatre: a login page in front of an open database</li></ul></div>
+  </div>
+</section>
+<footer>
+  Learn Networking School · the post room is in the repo · <a href="index.html">Course home</a> · <a href="lesson-diagrams.html">Lesson diagrams</a> · <a href="https://github.com/BaluRaut/learn-networking-school">GitHub</a> · <a href="https://baluraut.github.io/school/dictionary.html">📖 the Dictionary</a> · <a href="https://baluraut.github.io/school/">🏫 all schools</a> · <a href="https://github.com/BaluRaut/learn-networking-school/issues">🐛 found a mistake?</a>
+</footer>
+</div>
+</body>
+</html>
